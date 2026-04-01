@@ -1,12 +1,20 @@
 <!DOCTYPE html>
-<html lang="en">
+<html>
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>FIFA 3D Online</title>
-    <link rel="stylesheet" href="style.css">
+  <title>FIFA 3D Online</title>
+  <link rel="stylesheet" href="style.css">
 </head>
 <body>
-    <script src="main.js"></script>
+
+<div id="ui">
+  <div id="score"></div>
+  <div id="timer"></div>
+</div>
+
+<button onclick="startVoice()">Voice Chat</button>
+
+<script src="/socket.io/socket.io.js"></script>
+<script type="module" src="main.js"></script>
+
 </body>
 </html>
