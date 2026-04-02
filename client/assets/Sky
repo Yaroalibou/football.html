@@ -1,12 +1,21 @@
-const skyLoader = new THREE.CubeTextureLoader();
+export function initScene() {
+  scene = new THREE.Scene();
 
-const sky = skyLoader.load([
-  "assets/sky/px.jpg",
-  "assets/sky/nx.jpg",
-  "assets/sky/py.jpg",
-  "assets/sky/ny.jpg",
-  "assets/sky/pz.jpg",
-  "assets/sky/nz.jpg"
-]);
+  camera = new THREE.PerspectiveCamera(75, window.innerWidth/window.innerHeight, 0.1, 1000);
+  camera.position.set(0, 10, 15);
 
-scene.background = sky;
+  renderer = new THREE.WebGLRenderer({ antialias: true });
+  renderer.setSize(window.innerWidth, window.innerHeight);
+  document.body.appendChild(renderer.domElement);
+
+  // ✅ 👉 ADD LIGHTING RIGHT HERE 👇
+
+  const sun = new THREE.DirectionalLight(0xffffff, 1);
+  sun.position.set(10, 20, 10);
+  scene.add(sun);
+
+  const ambient = new THREE.AmbientLight(0x404040);
+  scene.add(ambient);
+
+  // THEN add skybox + field + players
+}
