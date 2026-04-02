@@ -1,0 +1,12 @@
+import { GLTFLoader } from "three/examples/jsm/loaders/GLTFLoader.js";
+
+const loader = new GLTFLoader();
+
+loader.load("assets/player.glb", (gltf) => {
+  const player = gltf.scene;
+
+  player.scale.set(1, 1, 1);
+  player.position.set(0, 0, 0);
+
+  scene.add(player);
+});
