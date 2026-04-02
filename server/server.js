@@ -54,3 +54,42 @@ setInterval(() => {
 }, 1000 / 30);
 
 http.listen(3000, () => console.log("Server running on port 3000"));
+
+// rooms.js
+const {
+  findOrCreateRoom,
+  joinRoom,
+  leaveRoom,
+  updatePlayer,
+  getRoomState,
+  updateRooms,
+  rooms
+} = require("./rooms");
+
+io.on("connection", (socket) => {
+
+  socket.on("joinMatch", () => {
+    const room = findOrCreateRoom();
+    joinRoom(room.id, socket);
+
+    socket.emit("joined", room.id);
+  });
+
+  socket.on("move", (data) => {
+    updatePlayer(socket, data);
+  });
+
+  socket.on("disconnect", () => {
+    leaveRoom(socket);
+  });
+
+});
+
+// GAME LOOP
+setInterval(() => {
+  updateRooms();
+
+  for (let roomId in rooms) {
+    io.to(roomId).emit("state", getRoomState(roomId));
+  }
+}, 1000 / 30);
