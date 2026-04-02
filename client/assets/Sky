@@ -1,0 +1,12 @@
+const skyLoader = new THREE.CubeTextureLoader();
+
+const sky = skyLoader.load([
+  "assets/sky/px.jpg",
+  "assets/sky/nx.jpg",
+  "assets/sky/py.jpg",
+  "assets/sky/ny.jpg",
+  "assets/sky/pz.jpg",
+  "assets/sky/nz.jpg"
+]);
+
+scene.background = sky;
